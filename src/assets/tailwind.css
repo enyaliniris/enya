@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+@import 'tailwindcss/utilities';
+@theme {
+  --color-body: #f2f7fd;
+  --tw-color-soft-blue: #a4c9f7;
+  --radial-fade: radial-gradient(circle at center, var(--tw-color-soft-blue) 0%, transparent 70%);
+}
+
+body {
+  background-color: var(--color-body);
+}
+
+@layer utilities {
+  .bg-radial-fade {
+    /* 使用您在 @theme 中定義的 --tw-color-soft-blue 變數 */
+    background-image: radial-gradient(
+      circle at center,
+      var(--tw-color-soft-blue) 0%,
+      transparent 70%
+    );
+  }
+}
