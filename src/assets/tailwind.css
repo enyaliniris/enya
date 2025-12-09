@@ -4,6 +4,13 @@
   --color-body: #f2f7fd;
   --tw-color-soft-blue: #a4c9f7;
   --radial-fade: radial-gradient(circle at center, var(--tw-color-soft-blue) 0%, transparent 70%);
+  --radius-5xl: 2rem;
+  --color-gray-50: oklch(37.9% 0.146 265.522) --color-gray-100: oklch(37.9% 0.146 265.522)
+    --color-gray-200: oklch(37.9% 0.146 265.522) --color-gray-300: oklch(37.9% 0.146 265.522)
+    --color-gray-400: oklch(37.9% 0.146 265.522) --color-gray-500: oklch(37.9% 0.146 265.522)
+    --color-gray-600: oklch(37.9% 0.146 265.522) --color-gray-700: oklch(37.9% 0.146 265.522)
+    --color-gray-800: oklch(37.9% 0.146 265.522) --color-gray-900: oklch(37.9% 0.146 265.522)
+    --color-gray-950: oklch(37.9% 0.146 265.522);
 }
 
 body {
@@ -12,7 +19,6 @@ body {
 
 @layer utilities {
   .bg-radial-fade {
-    /* 使用您在 @theme 中定義的 --tw-color-soft-blue 變數 */
     background-image: radial-gradient(
       circle at center,
       var(--tw-color-soft-blue) 0%,

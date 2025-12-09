@@ -7,28 +7,30 @@
 
             <div class="viewport" v-show="!loading">
                 <div v-for="(item, i) in works" :key="i" class="work" :ref="el => (workRefs[i] = el as HTMLElement)">
-                    <div class="content">
-                        <div class="image-box">
+                    <div class="content md:flex md:gap-[50px] flex-col md:flex-row">
+
+                        <div class="image-box order-1 md:order-0 w-full reflection-box">
                             <img :src="item.image" @load="onImageLoad" />
                         </div>
 
-                        <div class="text-box">
-                            <div class="mt-4 pt-4">
-                                <h3 class="text-base font-semibold text-gray-400 mb-2">專案時程</h3>
-                                <p class="text-xl font-medium text-gray-400 border-t border-gray-700/50">
-                                    {{ item.timeline }}</p>
+                        <div class="text-box order-2 md:order-0 w-full">
+
+                            <div class="flex items-start justify-between mb-2 md:flex-row">
+                                <h1 class="grow font-bold text-blue-500">{{ item.title }}</h1>
+                                <p
+                                    class="text-base md:text-xl font-medium text-gray-400 pt-1 md:pt-0 whitespace-nowrap **flex-shrink-0**">
+                                    {{ item.timeline }}
+                                </p>
                             </div>
-                            <h1>{{ item.title }}</h1>
-                            <p class="whitespace-pre-line">{{ item.desc }}</p>
-                            <div class="mt-6">
-                                <h3 class="text-base font-semibold text-gray-400 mb-2">使用技術</h3>
+
+                            <p class="whitespace-pre-line md:max-w-3xl">{{ item.desc }}</p>
+
+                            <div class="mt-1 pt-4 border-t border-gray-700/50"></div>
+                            <div class="mt-3">
+                                <h3 class="text-base font-semibold text-gray-400 mb-1">使用技術</h3>
                                 <div class="flex flex-wrap gap-2">
-                                    <span v-for="tag in item.tags" :key="tag" class="
-                                            px-3 py-1 text-sm font-medium 
-                                            rounded-full 
-                                             text-blue-300 
-                                            border border-blue-600/50
-                                          ">
+                                    <span v-for="tag in item.tags" :key="tag"
+                                        class="px-3 py-1 text-sm font-medium rounded-full  text-blue-300 border border-blue-600/50">
                                         {{ tag }}
                                     </span>
                                 </div>
@@ -37,7 +39,8 @@
                     </div>
                 </div>
 
-                <div class="dots">
+                <div
+                    class="dots absolute md:right-10 md:top-1/2 md:translate-y-[-50%] bottom-8 md:bottom-auto left-1/2 md:left-auto translate-x-[-50%] md:translate-x-0 flex-row md:flex-col">
                     <div v-for="(w, i) in works" :key="'dot-' + i" class="dot" :class="{ active: i === currentIndex }"
                         @click="goToWork(i)"></div>
                 </div>
@@ -65,38 +68,29 @@ interface WorkItem {
 const works = ref<WorkItem[]>([
     {
         title: "數位金融後台",
-        desc: `1. 交易量數據圖表：透過 Echart 以動態數據圖，即時查詢特定時間的業務交易量。\n
-               2. 表格查詢功能：內部系統的共用變數、API、客戶操作軌跡等資料整合成排序清晰的表格呈現。\n
-               3. 登入權限：以 Pinia 制定角色規則，不同角色操作的權限不同。`,
+        desc: `1. 交易量數據圖表：透過 Echart 以動態數據圖，即時查詢特定時間的業務交易量。\n2. 表格查詢功能：內部系統的共用變數、API、客戶操作軌跡等資料整合成排序清晰的表格呈現。\n3. 登入權限：以 Pinia 制定角色規則，不同角色操作的權限不同。`,
         timeline: "2023/4 - 2024/5",
         tags: ["Vue 3", "Vite", "Ant Design", "Echart"],
         image: "/images/project-dashboard.jpg"
     },
     {
         title: "企業網路銀行",
-        desc: `負責UI翻新:\n
-               1.網站整體色調現代化、響應式設計，設計大量資訊在跨裝置上的樣式切換。\n
-               FrontEnd：\n
-               1.根據金融規範更新功能，例如外幣大額申報、告誡戶限制、信用卡查詢等等。\n
-               2.重構程式碼，導入新語法套件，提升可維護性。\n
-               3.排解弱點掃描問題，提升網站安全性。\n`,
+        desc: `UI:\n1.網站整體色調現代化、響應式設計，設計大量資訊在跨裝置上的樣式切換。\n
+               FrontEnd：\n1.根據金融規範更新功能，例如外幣大額申報、告誡戶限制、信用卡查詢等等。\n2.重構程式碼，導入新語法套件，提升可維護性。\n3.排解弱點掃描問題，提升網站安全性。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "Figma", "javascript(ES6)", "Bootstrap"],
         image: "/images/project-ebank.jpg"
     },
     {
         title: "友善金融網",
-        desc: `負責開發主軸為：\n
-               1.新增外幣、貸款、定存、投資報告查詢功能。\n
-               2.登入功能新增語音播報驗證碼。\n
-               3.重構該網站查詢功能的流程，將步驟拆分為帳號選擇、日期選擇、表格顯示等功能相同的區塊，減少重複程式碼。\n`,
+        desc: `負責開發主軸為：\n1.新增外幣、貸款、定存、投資報告查詢功能。\n2.登入功能新增語音播報驗證碼。\n3.重構該網站查詢功能的流程，將步驟拆分為帳號選擇、日期選擇、表格顯示等功能相同的區塊，減少重複程式碼。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "javascript(ES6)", "Bootstrap"],
         image: "/images/project-freebank.jpg"
     },
     {
         title: "靜態網站",
-        desc: "・CSS客製化RWD切版\n・Javascript製作橫向商品輪播牆邏輯\n\n・CSS Animation keyframe製作光暈特效",
+        desc: `1.CSS客製化RWD切版。\n 2.Javascript製作橫向商品輪播牆邏輯。\n3.CSS Animation keyframe製作光暈特效。`,
         timeline: "2022/11 - 2022/11",
         tags: ["HTML", "CSS", "JavaScript"],
         image: "/images/project-singlepage.jpg"
@@ -114,8 +108,16 @@ const X_OFFSET = 500;
 const loading = ref(false);
 let loadedImages = 0;
 
-function onImageLoad() {
+function onImageLoad(e: Event) {
     loadedImages++;
+    const target = e.target as HTMLImageElement;
+    const url = target?.src;
+    if (target?.parentElement) {
+        target.parentElement.style.setProperty(
+            "--reflection-img",
+            `url(${url})`
+        );
+    }
     if (loadedImages >= works.value.length) {
         loading.value = false;
         initWorksPosition();
@@ -137,6 +139,7 @@ function initWorksPosition() {
             zIndex: i === 0 ? 10 : 1,
         });
     });
+    console.log("workRefs", workRefs.value);
 }
 
 // 滾輪控制
@@ -186,6 +189,7 @@ function initScroll() {
                     // 釋放滾輪！
                     // 不執行 e.preventDefault()，讓頁面向上滾動回 HomeCover
                     // 額外強制滾動到 ScrollScene 頂部，確保滾輪釋放是乾淨的。
+                    console.log("Releasing scroll at first work");
                     if (scrollPosition > sceneTop) {
                         // 避免在 HomeCover 區域時再次執行此邏輯
                         window.scrollTo({ top: sceneTop - 1, behavior: 'auto' });
@@ -197,10 +201,15 @@ function initScroll() {
     );
 }
 
+const animating = ref(false);
+
 // 切換作品（滾輪 + 點點共用）
 function goToWork(newIndex: number) {
+    if (animating.value) return;               // 防止多次觸發
+    console.log("goToWork triggered", { from: currentIndex.value, to: newIndex });
     //if (newIndex < 0 || newIndex >= works.value.length) return;
     if (newIndex === currentIndex.value) return;
+    animating.value = true;                   // 鎖住
 
     const oldIndex = currentIndex.value;
     currentIndex.value = newIndex;
@@ -231,6 +240,9 @@ function goToWork(newIndex: number) {
         duration: 1,
         ease: "power3.out",
         zIndex: 10,
+        onComplete: () => {
+            animating.value = false;       // 解鎖
+        }
     });
 }
 </script>
@@ -269,18 +281,14 @@ body {
 .work {
     position: absolute;
     width: 100%;
-    max-width: 1000px;
+    padding: 0 40px;
     transform-style: preserve-3d;
 }
 
 .content {
-    display: flex;
-    gap: 50px;
+    max-width: 1300px;
     align-items: center;
-}
-
-.image-box {
-    flex: 1.1;
+    margin: 0 auto
 }
 
 .image-box img {
@@ -290,21 +298,24 @@ body {
 }
 
 .text-box {
-    flex: 0.9;
+    /* flex: 0.9; */
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .text-box h1 {
-    font-size: 2.6rem;
+    /* 最小 1.8rem, 理想值 3vw, 最大 2.4rem */
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
     margin: 0;
 }
 
 .text-box p {
     opacity: 0.8;
-    line-height: 1.2em;
-    font-size: 1.1rem;
+    line-height: 1.3em;
+    /* 調整行高以適應 pre-line */
+    /* 最小 0.9rem, 理想值 3vw, 最大 1.1rem */
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 /* Loading 遮罩 */
@@ -338,12 +349,7 @@ body {
 
 /* dots 可點擊切換 */
 .dots {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
-    flex-direction: column;
     gap: 12px;
     z-index: 999;
 }
@@ -362,5 +368,50 @@ body {
     opacity: 1;
     background: #fff;
     transform: scale(1.4);
+}
+
+.reflection-box {
+    position: relative;
+}
+
+.reflection-box img {
+    display: block;
+}
+
+/* 反射 */
+.reflection-box::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    /* 往下放 */
+    height: 100%;
+    /* 反射高度 = 原圖高度 */
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: scaleY(-1);
+    /* 垂直翻轉 */
+    opacity: 0.25;
+    /* 透明度 */
+    mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 60%,
+            rgba(0, 0, 0, 1) 100%);
+
+    -webkit-mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 60%,
+            rgba(0, 0, 0, 1) 100%);
+}
+
+.reflection-box::after {
+    background-image: var(--reflection-img);
+}
+
+@media screen and (max-width: 768px) {
+    .reflection-box::after {
+        display: none;
+    }
 }
 </style>

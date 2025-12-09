@@ -21,6 +21,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "gsap": "^3.13.0",
     "pinia": "^3.0.4",
+    "typed.js": "^2.1.0",
     "vue": "^3.5.25",
     "vue-loading-overlay": "5.0",
     "vue-router": "^4.6.3"
