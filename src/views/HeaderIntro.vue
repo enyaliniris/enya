@@ -21,7 +21,7 @@
         </div>
 
         <div class="flex justify-center mt-8">
-            <button @click="scrollToScrollScene"
+            <button @click="$emit('scrollToWorks')"
                 class="animate-bounce text-4xl text-gray-600 cursor-pointer p-4 relative overflow-hidden rounded-full z-10 group">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
                     stroke="currentColor" class="relative z-20 w-8 h-8">
@@ -31,18 +31,13 @@
                     class="absolute inset-0 rounded-full bg-radial-fade transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-0"></span>
             </button>
         </div>
-
-        <ScrollScene ref="scrollSceneRef" />
-        <ContactView></ContactView>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUpdate } from 'vue'
-import ScrollScene from './ScrollScene.vue'
-import ContactView from './ContactView.vue';
 import Typed from "typed.js";
-import NavBar from '@/component/nav-bar.vue';
+import NavBar from '@/components/nav-bar.vue';
 
 const typingTexts = [
     "2 年前端工程師經驗，專注打造高品質使用者介面與互動體驗。",
@@ -50,16 +45,12 @@ const typingTexts = [
     "具備 UI 到前端完整獨立開發能力，並能與設計師和後端協作。"
 ];
 
-const scrollSceneRef = ref<InstanceType<typeof ScrollScene> | null>(null);
 const lineRefs = ref<HTMLElement[]>([]);
 
 onBeforeUpdate(() => {
     lineRefs.value = [];
 });
 
-function scrollToScrollScene() {
-    scrollSceneRef.value?.$el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 
 const typeText = (element: HTMLElement, text: string) => {
     return new Promise<void>((resolve) => {

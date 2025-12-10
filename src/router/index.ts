@@ -5,15 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'HomeCover',
-      component: () => import('@/views/HomeCover.vue'),
-    },
-    {
-      path: '/1',
-      name: 'ScrollScene',
-      alias: '/scroll',
-      // lazy-loaded for code-splitting
-      component: () => import('../views/ScrollScene.vue'),
+      name: 'home',
+      component: () => import('@/views/HomePage.vue'),
     },
   ],
 })

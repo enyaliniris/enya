@@ -9,14 +9,17 @@
                 <div v-for="(item, i) in works" :key="i" class="work" :ref="el => (workRefs[i] = el as HTMLElement)">
                     <div class="content md:flex md:gap-[50px] flex-col md:flex-row">
 
-                        <div class="image-box order-1 md:order-0 w-full reflection-box">
-                            <img :src="item.image" @load="onImageLoad" />
-                        </div>
+                        <a :href="item.url" target="_blank" class="image-box order-1 md:order-0 w-full reflection-box">
+                            <img :src="item.image" @load="onImageLoad" :alt="item.title" />
+                        </a>
 
                         <div class="text-box order-2 md:order-0 w-full">
 
                             <div class="flex items-start justify-between mb-2 md:flex-row">
-                                <h1 class="grow font-bold text-blue-500">{{ item.title }}</h1>
+                                <a :href="item.url" target="_blank"
+                                    class="grow font-bold text-blue-400 hover:underline">
+                                    <h1>{{ item.title }}</h1>
+                                </a>
                                 <p
                                     class="text-base md:text-xl font-medium text-gray-400 pt-1 md:pt-0 whitespace-nowrap **flex-shrink-0**">
                                     {{ item.timeline }}
@@ -38,12 +41,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div
-                    class="dots absolute md:right-10 md:top-1/2 md:translate-y-[-50%] bottom-8 md:bottom-auto left-1/2 md:left-auto translate-x-[-50%] md:translate-x-0 flex-row md:flex-col">
-                    <div v-for="(w, i) in works" :key="'dot-' + i" class="dot" :class="{ active: i === currentIndex }"
-                        @click="goToWork(i)"></div>
-                </div>
+                <DotSwitcher :count="works.length" :activeIndex="currentIndex" direction="vertical"
+                    @update:index="goToWork"
+                    class="absolute md:right-10 md:top-1/2 md:translate-y-[-50%] bottom-8 md:bottom-auto left-1/2 md:left-auto translate-x-[-50%] md:translate-x-0" />
             </div>
         </div>
     </div>
@@ -54,6 +54,7 @@
 import { ref } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import DotSwitcher from "@/components/dot-switcher.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,7 +64,9 @@ interface WorkItem {
     timeline: string;
     tags: string[];
     image: string;
+    url: string;
 }
+
 
 const works = ref<WorkItem[]>([
     {
@@ -71,7 +74,8 @@ const works = ref<WorkItem[]>([
         desc: `1. 交易量數據圖表：透過 Echart 以動態數據圖，即時查詢特定時間的業務交易量。\n2. 表格查詢功能：內部系統的共用變數、API、客戶操作軌跡等資料整合成排序清晰的表格呈現。\n3. 登入權限：以 Pinia 制定角色規則，不同角色操作的權限不同。`,
         timeline: "2023/4 - 2024/5",
         tags: ["Vue 3", "Vite", "Ant Design", "Echart"],
-        image: "/images/project-dashboard.jpg"
+        image: "/images/project-dashboard.jpg",
+        url: "https://enyadashboard.netlify.app/"
     },
     {
         title: "企業網路銀行",
@@ -79,21 +83,24 @@ const works = ref<WorkItem[]>([
                FrontEnd：\n1.根據金融規範更新功能，例如外幣大額申報、告誡戶限制、信用卡查詢等等。\n2.重構程式碼，導入新語法套件，提升可維護性。\n3.排解弱點掃描問題，提升網站安全性。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "Figma", "javascript(ES6)", "Bootstrap"],
-        image: "/images/project-ebank.jpg"
+        image: "/images/project-ebank.jpg",
+        url: "https://myebank.ubot.com.tw/ebankC/#"
     },
     {
         title: "友善金融網",
         desc: `負責開發主軸為：\n1.新增外幣、貸款、定存、投資報告查詢功能。\n2.登入功能新增語音播報驗證碼。\n3.重構該網站查詢功能的流程，將步驟拆分為帳號選擇、日期選擇、表格顯示等功能相同的區塊，減少重複程式碼。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "javascript(ES6)", "Bootstrap"],
-        image: "/images/project-freebank.jpg"
+        image: "/images/project-freebank.jpg",
+        url: "https://freebank.ubot.com.tw/MBAF/"
     },
     {
         title: "靜態網站",
         desc: `1.CSS客製化RWD切版。\n 2.Javascript製作橫向商品輪播牆邏輯。\n3.CSS Animation keyframe製作光暈特效。`,
         timeline: "2022/11 - 2022/11",
         tags: ["HTML", "CSS", "JavaScript"],
-        image: "/images/project-singlepage.jpg"
+        image: "/images/project-singlepage.jpg",
+        url: "https://enyacolorfulworld.netlify.app/"
     }
 ]);
 
@@ -139,7 +146,7 @@ function initWorksPosition() {
             zIndex: i === 0 ? 10 : 1,
         });
     });
-    console.log("workRefs", workRefs.value);
+    //console.log("workRefs", workRefs.value);
 }
 
 // 滾輪控制
@@ -202,6 +209,7 @@ function initScroll() {
 }
 
 const animating = ref(false);
+
 
 // 切換作品（滾輪 + 點點共用）
 function goToWork(newIndex: number) {
@@ -355,8 +363,8 @@ body {
 }
 
 .dot {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #777;
     opacity: 0.4;
@@ -366,7 +374,7 @@ body {
 
 .dot.active {
     opacity: 1;
-    background: #fff;
+    background: #8ec5ff;
     transform: scale(1.4);
 }
 
