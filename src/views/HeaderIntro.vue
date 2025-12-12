@@ -1,6 +1,5 @@
 <template>
     <div>
-        <NavBar></NavBar>
         <div class="flex flex-col md:flex-row w-full md:max-w-[1100px] mx-auto min-h-9/10 items-center py-12">
             <div class="flex-1 p-2 md:p-2 order-2 md:order-1">
                 <div>
@@ -37,7 +36,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUpdate } from 'vue'
 import Typed from "typed.js";
-import NavBar from '@/components/nav-bar.vue';
 
 const typingTexts = [
     "2 年前端工程師經驗，專注打造高品質使用者介面與互動體驗。",

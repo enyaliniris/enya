@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen w-full">
+    <div class="flex flex-col items-center justify-center min-h-screen w-full overflow-x-hidden">
         <!-- Contact 標題區 -->
         <div class="text-center mb-8">
             <h1 class="text-4xl font-bold text-blue-400 mb-2">Contact</h1>

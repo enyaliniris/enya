@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
-
+<script setup lang="ts">
+</script>
 <template>
-  <router-view />
+  <keep-alive>
+    <router-view />
+  </keep-alive>
 </template>
-
-<style scoped></style>
