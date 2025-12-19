@@ -52,11 +52,8 @@ const navItems = ref<Array<{ name: string; section: 'home' | 'works' | 'contact'
 ])
 
 const isMenuOpen = ref(false)
-const debugFlag = isMenuOpen.value
-console.log('debugFlag === isMenuOpen ?', debugFlag === isMenuOpen.value)
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value
-    console.log('Menu toggled:', isMenuOpen.value)
 }
 
 import { useRouter } from 'vue-router'

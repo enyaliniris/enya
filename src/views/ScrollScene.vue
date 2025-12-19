@@ -154,51 +154,35 @@ function initScroll() {
     window.addEventListener(
         "wheel",
         (e: WheelEvent) => {
-            // 只有當頁面滾動到 ScrollScene 內部時，才執行滾輪劫持邏輯。判斷方式：當前滾動位置是否大於 ScrollScene 頂部位置減去一個安全緩衝區。
             const scrollSceneElement = document.querySelector('.ScrollScence') as HTMLElement;
             if (!scrollSceneElement) return;
 
             const sceneTop = scrollSceneElement.offsetTop;
             const scrollPosition = window.scrollY;
 
-            // 檢查是否在 ScrollScene 區域內
             const isInScene = scrollPosition >= (sceneTop - 100);
 
             if (!isInScene) {
-                // 如果不在區域內，則不執行任何操作，讓頁面自由滾動
                 return;
             }
 
-            // 【滾動事件處理】
 
-            // 正在動畫中，直接阻止滾輪並返回
             if (gsap.isTweening(workRefs.value)) {
                 e.preventDefault();
                 return;
             }
 
             if (e.deltaY > 0) {
-                // 往下滾動 (Next)
                 if (currentIndex.value < works.value.length - 1) {
-                    e.preventDefault(); // 阻止頁面滾動
+                    e.preventDefault(); 
                     goToWork(currentIndex.value + 1);
                 }
-                // 【關鍵修改 B】：滑到最後一張，不阻止預設行為，讓頁面向下滾動
-                // else: 不做 e.preventDefault()，讓頁面繼續向下滾動
-
             } else {
-                // 往上滾動 (Prev)
                 if (currentIndex.value > 0) {
-                    e.preventDefault(); // 阻止頁面滾動
+                    e.preventDefault(); 
                     goToWork(currentIndex.value - 1);
                 } else {
-                    // 【關鍵修改 C】：滑到第一張 (currentIndex.value === 0)
-                    // 釋放滾輪！
-                    // 不執行 e.preventDefault()，讓頁面向上滾動回 HomeCover
-                    // 額外強制滾動到 ScrollScene 頂部，確保滾輪釋放是乾淨的。
-                    console.log("Releasing scroll at first work");
                     if (scrollPosition > sceneTop) {
-                        // 避免在 HomeCover 區域時再次執行此邏輯
                         window.scrollTo({ top: sceneTop - 1, behavior: 'auto' });
                     }
                 }
@@ -215,7 +199,6 @@ const animating = ref(false);
 function goToWork(newIndex: number) {
     if (animating.value) return;               // 防止多次觸發
     console.log("goToWork triggered", { from: currentIndex.value, to: newIndex });
-    //if (newIndex < 0 || newIndex >= works.value.length) return;
     if (newIndex === currentIndex.value) return;
     animating.value = true;                   // 鎖住
 
@@ -249,7 +232,7 @@ function goToWork(newIndex: number) {
         ease: "power3.out",
         zIndex: 10,
         onComplete: () => {
-            animating.value = false;       // 解鎖
+            animating.value = false;
         }
     });
 }
@@ -306,14 +289,12 @@ body {
 }
 
 .text-box {
-    /* flex: 0.9; */
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .text-box h1 {
-    /* 最小 1.8rem, 理想值 3vw, 最大 2.4rem */
     font-size: clamp(1.8rem, 3vw, 2.4rem);
     margin: 0;
 }
@@ -321,8 +302,6 @@ body {
 .text-box p {
     opacity: 0.8;
     line-height: 1.3em;
-    /* 調整行高以適應 pre-line */
-    /* 最小 0.9rem, 理想值 3vw, 最大 1.1rem */
     font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
@@ -393,15 +372,11 @@ body {
     left: 0;
     right: 0;
     top: 100%;
-    /* 往下放 */
     height: 100%;
-    /* 反射高度 = 原圖高度 */
     background-size: cover;
     background-repeat: no-repeat;
     transform: scaleY(-1);
-    /* 垂直翻轉 */
     opacity: 0.25;
-    /* 透明度 */
     mask-image: linear-gradient(to bottom,
             rgba(0, 0, 0, 0) 0%,
             rgba(0, 0, 0, 0) 60%,

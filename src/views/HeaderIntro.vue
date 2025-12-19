@@ -1,4 +1,6 @@
 <template>
+    <div class="hero-wrapper">
+    <LineAnimation></LineAnimation>
     <div>
         <div class="flex flex-col md:flex-row w-full md:max-w-[1100px] mx-auto min-h-9/10 items-center py-12">
             <div class="flex-1 p-2 md:p-2 order-2 md:order-1">
@@ -31,16 +33,19 @@
             </button>
         </div>
     </div>
+    </div>
+
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUpdate } from 'vue'
 import Typed from "typed.js";
+import LineAnimation from '@/components/line-animation.vue';
 
 const typingTexts = [
     "2 年前端工程師經驗，專注打造高品質使用者介面與互動體驗。",
-    "熟悉 Figma / CSS / HTML / JavaScript / Vue.js。",
-    "具備 UI 到前端完整獨立開發能力，並能與設計師和後端協作。"
+    "熟悉 Vue.js / jQuery / JavaScript / CSS / Tailwind / HTML / JavaScript / Figma  ",
+    "具備 UI 到前端完整獨立開發能力，能與設計師和後端順暢協作。"
 ];
 
 const lineRefs = ref<HTMLElement[]>([]);
@@ -71,3 +76,13 @@ onMounted(async () => {
     }
 });
 </script>
+
+<style scoped>
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+</style>
