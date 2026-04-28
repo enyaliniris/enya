@@ -53,7 +53,7 @@ interface LinkItem {
  * 資料
  * ----------------------------------------------*/
 const links: Ref<LinkItem[]> = ref([
-    { name: 'Resume', url: 'https://www.figma.com/proto/oOD0Tt22ONYJRmZR0W5pfk/Enya-Resume?node-id=2-99&p=f&t=0wTmrRaCO64ixeik-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1' },
+    { name: 'Resume', url: 'https://www.figma.com/design/oOD0Tt22ONYJRmZR0W5pfk/Enya-Resume?node-id=31-116&t=bdhvc70lgFN4GL0R-0' },
     { name: 'Behance', url: 'https://www.behance.net/enyalin?tracking_source=search_users|enya' },
     { name: 'Github', url: 'https://github.com/enyaliniris' },
 ]);
