@@ -198,7 +198,7 @@ const animating = ref(false);
 // 切換作品（滾輪 + 點點共用）
 function goToWork(newIndex: number) {
     if (animating.value) return;               // 防止多次觸發
-    console.log("goToWork triggered", { from: currentIndex.value, to: newIndex });
+    //console.log("goToWork triggered", { from: currentIndex.value, to: newIndex });
     if (newIndex === currentIndex.value) return;
     animating.value = true;                   // 鎖住
 
