@@ -176,7 +176,7 @@ onMounted((): void => {
 
     text-align: center;
     font-size: 14px;
-    color: #ffffff;
+    color: #4b6dca;
 
 
     background: url(../images/ball.png) no-repeat center/cover;

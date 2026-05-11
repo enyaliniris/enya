@@ -71,7 +71,7 @@ interface WorkItem {
 const works = ref<WorkItem[]>([
     {
         title: "數位金融後台",
-        desc: `1. 交易量數據圖表：透過 Echart 以動態數據圖，即時查詢特定時間的業務交易量。\n2. 表格查詢功能：內部系統的共用變數、API、客戶操作軌跡等資料整合成排序清晰的表格呈現。\n3. 登入權限：以 Pinia 制定角色規則，不同角色操作的權限不同。`,
+        desc: `1. 交易量數據圖表：透過 Echart呈現即時查詢特定時間的業務交易量。\n2. 表格查詢功能：將內部ＡＰＩ規格書、客戶操作軌跡等資料整合成排序清晰的表格。\n3. 登入權限：以 Pinia 制定不同角色操作權限不同。`,
         timeline: "2023/4 - 2024/5",
         tags: ["Vue 3", "Vite", "Ant Design", "Echart"],
         image: "/images/project-dashboard.jpg",
@@ -79,8 +79,8 @@ const works = ref<WorkItem[]>([
     },
     {
         title: "企業網路銀行",
-        desc: `UI:\n1.網站整體色調現代化、響應式設計，設計大量資訊在跨裝置上的樣式切換。\n
-               FrontEnd：\n1.根據金融規範更新功能，例如外幣大額申報、告誡戶限制、信用卡查詢等等。\n2.重構程式碼，導入新語法套件，提升可維護性。\n3.排解弱點掃描問題，提升網站安全性。\n`,
+        desc: `UI:\n1.網站整體色調現代化。\n2.導入響應式設計。
+               FrontEnd：\n1.根據金融規範更新功能，例如：外幣大額申報、告誡戶限制、信用卡查詢。\n2.重構程式碼，導入新語法套件，提升可維護性。\n3.排解弱點掃描問題，提升網站安全性。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "Figma", "javascript(ES6)", "Bootstrap"],
         image: "/images/project-ebank.jpg",
@@ -88,7 +88,7 @@ const works = ref<WorkItem[]>([
     },
     {
         title: "友善金融網",
-        desc: `負責開發主軸為：\n1.新增外幣、貸款、定存、投資報告查詢功能。\n2.登入功能新增語音播報驗證碼。\n3.重構該網站查詢功能的流程，將步驟拆分為帳號選擇、日期選擇、表格顯示等功能相同的區塊，減少重複程式碼。\n`,
+        desc: `\n1.新增外幣、貸款、定存、投資報告查詢功能。\n2.登入功能新增語音播報驗證碼。\n3.重構該網站查詢功能的流程，將步驟拆分為帳號選擇、日期選擇、表格顯示等功能相同的區塊，減少重複程式碼。\n`,
         timeline: "2023/6 - 2025/6",
         tags: ["jQuery", "javascript(ES6)", "Bootstrap"],
         image: "/images/project-freebank.jpg",
@@ -96,7 +96,7 @@ const works = ref<WorkItem[]>([
     },
     {
         title: "靜態網站",
-        desc: `1.CSS客製化RWD切版。\n 2.Javascript製作橫向商品輪播牆邏輯。\n3.CSS Animation keyframe製作光暈特效。`,
+        desc: `1.CSS客製化響應式切版。\n 2.Javascript製作橫向商品輪播牆邏輯。\n3.CSS Animation keyframe製作光暈特效。`,
         timeline: "2022/11 - 2022/11",
         tags: ["HTML", "CSS", "JavaScript"],
         image: "/images/project-singlepage.jpg",
@@ -271,7 +271,7 @@ body {
 
 .work {
     position: absolute;
-    width: 100%;
+    width: 90%;
     padding: 0 40px;
     transform-style: preserve-3d;
 }
