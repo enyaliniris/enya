@@ -79,9 +79,9 @@ const works = ref<WorkItem[]>([
     },
     {
         title: "農業課程電商網站",
-        desc: `1. 商品展示：透過 Swiper 實現商品橫向輪播展示。\n2. 購物車功能：使用reducer管理購物車狀態。\n3. 客製ＵＩ：使用手繪素材打造獨特的農業風格網站。`,
+        desc: `1. 商品展示：透過 Swiper 實現商品橫向輪播展示。\n2. 購物車功能：使用reducer管理購物車狀態。\n3. 會員成就：根據會員購物歷程提升等級。\n4. 客製ＵＩ：使用手繪素材打造獨特的農業風格網站。\n5. 後端API：使用Node.js和MySQL建立簡單的後端API，並部署在Railway上。`,
         timeline: "2023/3 - 2024/4",
-        tags: ["React", "Vite", "React Router", "Bootstrap", "Swiper", "Axios"],
+        tags: ["React", "Vite", "React Router", "Node.js", "MySQL", "Swiper", "Axios", "Railway"],
         image: "/images/project-smallfarmer.jpg",
         url: "https://small-farmer.netlify.app/"
     },
