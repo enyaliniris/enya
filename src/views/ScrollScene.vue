@@ -71,11 +71,19 @@ interface WorkItem {
 const works = ref<WorkItem[]>([
     {
         title: "數位金融後台",
-        desc: `1. 交易量數據圖表：透過 Echart呈現即時查詢特定時間的業務交易量。\n2. 表格查詢功能：將內部ＡＰＩ規格書、客戶操作軌跡等資料整合成排序清晰的表格。\n3. 登入權限：以 Pinia 制定不同角色操作權限不同。`,
+        desc: `1. 交易量數據圖表：透過 Echart呈現即時查詢特定時間的業務交易量。\n2. 表格查詢功能：將內部ＡＰＩ規格書、客戶操作軌跡等資料整合成排序清晰的表格。\n3. 登入權限：以 Pinia 制定不同角色操作權限。`,
         timeline: "2023/4 - 2024/5",
         tags: ["Vue 3", "Vite", "Ant Design", "Echart"],
         image: "/images/project-dashboard.jpg",
         url: "https://enyadashboard.netlify.app/"
+    },
+    {
+        title: "農業課程電商網站",
+        desc: `1. 商品展示：透過 Swiper 實現商品橫向輪播展示。\n2. 購物車功能：使用reducer管理購物車狀態。\n3. 客製ＵＩ：使用手繪素材打造獨特的農業風格網站。`,
+        timeline: "2023/3 - 2024/4",
+        tags: ["React", "Vite", "React Router", "Bootstrap", "Swiper", "Axios"],
+        image: "/images/project-smallfarmer.jpg",
+        url: "https://small-farmer.netlify.app/"
     },
     {
         title: "企業網路銀行",
