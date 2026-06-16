@@ -78,14 +78,6 @@ const works = ref<WorkItem[]>([
         url: "https://enyadashboard.netlify.app/"
     },
     {
-        title: "農業課程電商網站",
-        desc: `1. 商品展示：透過 Swiper 實現商品橫向輪播展示。\n2. 購物車功能：使用reducer管理購物車狀態。\n3. 會員成就：根據會員購物歷程提升等級。\n4. 客製ＵＩ：使用手繪素材打造獨特的農業風格網站。\n5. 後端API：使用Node.js和MySQL建立簡單的後端API，並部署在Railway上。`,
-        timeline: "2023/3 - 2024/4",
-        tags: ["React", "Vite", "React Router", "Node.js", "MySQL", "Swiper", "Axios", "Railway"],
-        image: "/images/project-smallfarmer.jpg",
-        url: "https://small-farmer.netlify.app/"
-    },
-    {
         title: "企業網路銀行",
         desc: `UI:\n1.網站整體色調現代化。\n2.導入響應式設計。
                FrontEnd：\n1.根據金融規範更新功能，例如：外幣大額申報、告誡戶限制、信用卡查詢。\n2.重構程式碼，導入新語法套件，提升可維護性。\n3.排解弱點掃描問題，提升網站安全性。\n`,
@@ -156,12 +148,16 @@ function initWorksPosition() {
     });
     //console.log("workRefs", workRefs.value);
 }
+let lastScrollTime = 0;
 
 // 滾輪控制
 function initScroll() {
     window.addEventListener(
         "wheel",
         (e: WheelEvent) => {
+            const SCROLL_COOLDOWN = 1000;
+            const now = Date.now();
+
             const scrollSceneElement = document.querySelector('.ScrollScence') as HTMLElement;
             if (!scrollSceneElement) return;
 
@@ -174,6 +170,12 @@ function initScroll() {
                 return;
             }
 
+            // mac 慣性滾動 冷卻中直接擋掉
+            if (now - lastScrollTime < SCROLL_COOLDOWN) {
+                e.preventDefault();
+                return;
+            }
+            lastScrollTime = now;
 
             if (gsap.isTweening(workRefs.value)) {
                 e.preventDefault();
